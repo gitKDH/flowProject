@@ -31,15 +31,23 @@ public class ExtensionController {
     }
 
     @PostMapping("/custom-extensions")
-    public String addCustomExtension(@RequestParam String name) {
-        extensionService.addCustomExtension(name);
-        return "redirect:/extensions";
+    public ResponseEntity<?> addCustomExtension(@RequestParam String name) {
+        try {
+            extensionService.addCustomExtension(name);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/custom-extensions/{id}/remove")
-    public String removeCustomExtension(@PathVariable Long id) {
-        extensionService.removeCustomExtension(id);
-        return "redirect:/extensions";
+    public ResponseEntity<?> removeCustomExtension(@PathVariable Long id) {
+        try {
+            extensionService.removeCustomExtension(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/extensions")
