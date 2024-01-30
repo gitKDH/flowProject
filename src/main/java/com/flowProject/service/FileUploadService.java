@@ -13,7 +13,11 @@ import java.util.List;
 public class FileUploadService {
 
     @Autowired
-    private UploadedFileRepository uploadedFileRepository;
+    private final UploadedFileRepository uploadedFileRepository;
+
+    public FileUploadService(UploadedFileRepository uploadedFileRepository) {
+        this.uploadedFileRepository = uploadedFileRepository;
+    }
 
     @Autowired
     private ExtensionService extensionService;
@@ -31,5 +35,9 @@ public class FileUploadService {
 
     public List<UploadedFile> getUploadedFiles() {
         return uploadedFileRepository.findAll();
+    }
+
+    public void deleteFile(String fileName) {
+        uploadedFileRepository.deleteByFileName(fileName);
     }
 }
