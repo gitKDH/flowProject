@@ -28,6 +28,10 @@ public class FileUploadService {
             throw new IllegalArgumentException("차단된 확장자입니다. : " + extension);
         }
 
+        if (uploadedFileRepository.findByFileName(file.getOriginalFilename()) != null) {
+            throw new IllegalArgumentException("이미 등록된 파일입니다. : " + file.getOriginalFilename());
+        }
+
         UploadedFile uploadedFile = new UploadedFile();
         uploadedFile.setFileName(file.getOriginalFilename());
         uploadedFileRepository.save(uploadedFile);

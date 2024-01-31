@@ -27,7 +27,7 @@ public class FileUploadController {
             fileUploadService.uploadFile(file);
             attributes.addFlashAttribute("message", "파일 업로드에 성공하였습니다. : " + file.getOriginalFilename());
         } catch (IllegalArgumentException e) {
-            attributes.addFlashAttribute("message", "업로드 할 수 없는 확장자입니다. " + e.getMessage());
+            attributes.addFlashAttribute("message", "업로드 할 수 없습니다. " + e.getMessage());
         }
         model.addAttribute("uploadedFiles", fileUploadService.getUploadedFiles());
         return "redirect:/";

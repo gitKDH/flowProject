@@ -12,4 +12,5 @@ public interface UploadedFileRepository extends JpaRepository<UploadedFile, Long
     @Transactional
     @Query("DELETE FROM UploadedFile u WHERE u.fileName = :fileName")
     void deleteByFileName(@Param("fileName") String fileName);
+    UploadedFile findByFileName(String fileName);
 }
