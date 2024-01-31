@@ -13,11 +13,14 @@ import java.util.Optional;
 @Service
 public class ExtensionService {
 
-    @Autowired
-    private FixedExtensionRepository fixedExtensionRepository;
+    private final FixedExtensionRepository fixedExtensionRepository;
 
-    @Autowired
-    private CustomExtensionRepository customExtensionRepository;
+    private final CustomExtensionRepository customExtensionRepository;
+
+    public ExtensionService(FixedExtensionRepository fixedExtensionRepository, CustomExtensionRepository customExtensionRepository){
+        this.fixedExtensionRepository = fixedExtensionRepository;
+        this.customExtensionRepository = customExtensionRepository;
+    }
 
     public List<FixedExtension> getFixedExtensions() {
         return fixedExtensionRepository.findAll();

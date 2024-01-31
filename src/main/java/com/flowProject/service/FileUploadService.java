@@ -12,15 +12,14 @@ import java.util.List;
 @Service
 public class FileUploadService {
 
-    @Autowired
     private final UploadedFileRepository uploadedFileRepository;
+    private final ExtensionService extensionService;
 
-    public FileUploadService(UploadedFileRepository uploadedFileRepository) {
+    public FileUploadService(UploadedFileRepository uploadedFileRepository, ExtensionService extensionService) {
         this.uploadedFileRepository = uploadedFileRepository;
+        this.extensionService = extensionService;
     }
 
-    @Autowired
-    private ExtensionService extensionService;
 
     public void uploadFile(MultipartFile file) {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
