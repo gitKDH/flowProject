@@ -4,7 +4,6 @@ import com.flowProject.entity.CustomExtension;
 import com.flowProject.entity.FixedExtension;
 import com.flowProject.repository.CustomExtensionRepository;
 import com.flowProject.repository.FixedExtensionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

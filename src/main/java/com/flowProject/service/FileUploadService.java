@@ -3,7 +3,6 @@ package com.flowProject.service;
 import com.flowProject.entity.UploadedFile;
 import com.flowProject.repository.UploadedFileRepository;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
