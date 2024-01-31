@@ -21,7 +21,7 @@ public class ExtensionController {
 
     private final FileUploadService fileUploadService;
 
-    public ExtensionController(ExtensionService extensionService,FileUploadService fileUploadService){
+    public ExtensionController(ExtensionService extensionService, FileUploadService fileUploadService) {
         this.extensionService = extensionService;
         this.fileUploadService = fileUploadService;
 

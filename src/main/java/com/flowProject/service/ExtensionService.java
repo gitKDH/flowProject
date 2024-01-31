@@ -16,7 +16,7 @@ public class ExtensionService {
 
     private final CustomExtensionRepository customExtensionRepository;
 
-    public ExtensionService(FixedExtensionRepository fixedExtensionRepository, CustomExtensionRepository customExtensionRepository){
+    public ExtensionService(FixedExtensionRepository fixedExtensionRepository, CustomExtensionRepository customExtensionRepository) {
         this.fixedExtensionRepository = fixedExtensionRepository;
         this.customExtensionRepository = customExtensionRepository;
     }
@@ -45,7 +45,7 @@ public class ExtensionService {
 
     public void addCustomExtension(String name) {
         Optional<CustomExtension> existingExtension = customExtensionRepository.findByName(name);
-        if(existingExtension.isPresent()){
+        if (existingExtension.isPresent()) {
             throw new IllegalArgumentException("이미 차단된 확장자입니다. : " + name);
         }
         if (name.length() > 20) {

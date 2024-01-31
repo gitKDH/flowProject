@@ -13,7 +13,7 @@ public class FileUploadController {
 
     private final FileUploadService fileUploadService;
 
-    public FileUploadController(FileUploadService fileUploadService){
+    public FileUploadController(FileUploadService fileUploadService) {
         this.fileUploadService = fileUploadService;
     }
 
