@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>파일 업로드</h1>
-<form method="post" action="/upload" enctype="multipart/form-data">
+<form id="upload-form" method="post" action="/upload" enctype="multipart/form-data">
     <input type="file" name="file">
     <button type="submit">업로드</button>
 </form>
@@ -21,6 +21,13 @@
 <a href="/extensions">>확장자 관리<</a>
 <script>
     $(document).ready(function () {
+        $("#upload-form").submit(function (e) {
+            if ($("input[type=file]").val() === '') {
+                e.preventDefault();
+                alert("파일을 선택해주세요");
+            }
+        });
+
         $(".delete-file-button").click(function () {
             var fileName = $(this).data("file-name");
             $.ajax({
