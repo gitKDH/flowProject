@@ -44,12 +44,12 @@ public class ExtensionService {
     }
 
     public void addCustomExtension(String name) {
-        if (name.length() > 20) {
-            throw new IllegalArgumentException("확장자가 너무 깁니다 (20자 이내) : " + name);
-        }
         Optional<CustomExtension> existingExtension = customExtensionRepository.findByName(name);
         if(existingExtension.isPresent()){
             throw new IllegalArgumentException("이미 차단된 확장자입니다." + name);
+        }
+        if (name.length() > 20) {
+            throw new IllegalArgumentException("확장자가 너무 깁니다 (20자 이내) : " + name);
         }
         CustomExtension extension = new CustomExtension();
         extension.setName(name);
@@ -81,9 +81,7 @@ public class ExtensionService {
         } else {
             Optional<CustomExtension> customExtension = customExtensionRepository.findByName(extension);
             if (customExtension.isPresent()) {
-                // 이미 커스텀 확장자로 존재하므로, 별도의 처리는 필요 없음
             } else {
-                // 새로운 커스텀 확장자로 추가
                 CustomExtension newExtension = new CustomExtension();
                 newExtension.setName(extension);
                 customExtensionRepository.save(newExtension);
