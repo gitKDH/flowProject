@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <title>파일 업로드</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>파일 업로드</h1>
+<form method="post" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">업로드</button>
+</form>
+<p th:text="${message}"></p>
+<ul class="custom-extensions">
+    <li class="custom-extension" th:each="file : ${uploadedFiles}">
+        <span th:text="${file.fileName}"></span>
+        <button class="delete-file-button" th:data-file-name="${file.fileName}">삭제</button>
+    </li>
+</ul>
+<a href="/extensions">>확장자 관리<</a>
+<script>
+    $(document).ready(function () {
+        $(".delete-file-button").click(function () {
+            var fileName = $(this).data("file-name");
+            $.ajax({
+                url: "/upload/" + encodeURIComponent(fileName),
+                type: "delete",
+                success: function () {
+                    alert("삭제에 성공하였습니다.");
+                    location.reload();
+                },
+                error: function () {
+                    alert("파일 삭제에 실패하였습니다.");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

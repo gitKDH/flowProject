@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/extensions.css">
+    <title>확장자 관리</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>파일 확장자 차단</h1>
+
+<h2>고정 확장자</h2>
+<ul>
+    <li th:each="extension : ${fixedExtensions}">
+        <input type="checkbox" class="fixed-extension-checkbox" th:id="${'extension-' + extension.id}"
+               th:checked="${extension.isBlocked}" th:data-extension-id="${extension.id}">
+        <span th:text="${extension.name}"></span>
+    </li>
+</ul>
+
+<h2>커스텀 확장자</h2>
+<form id="add-extension-form" method="post" th:action="@{/custom-extensions}">
+    <input type="text" name="name" placeholder="확장자 입력">
+    <button type="submit">추가</button>
+</form>
+<ul class="custom-extensions">
+    <li class="custom-extension" th:each="extension : ${customExtensions}">
+        <span th:text="${extension.name}"></span>
+        <a href="#" class="remove-extension-link" th:data-extension-id="${extension.id}">X</a>
+    </li>
+</ul>
+
+<a href="/">>홈으로<</a>
+
+<script>
+    $(document).ready(function () {
+        $(".fixed-extension-checkbox").change(function () {
+            var isChecked = $(this).is(":checked");
+            var extensionId = $(this).data("extension-id");
+            $.ajax({
+                url: "/fixed-extensions/" + extensionId + "/block-unblock",
+                type: "post",
+                data: {isBlocked: isChecked}
+            });
+        });
+
+        $("#add-extension-form").submit(function (e) {
+            e.preventDefault();
+            var name = $(this).find("input[name='name']").val();
+            $.ajax({
+                url: "/custom-extensions",
+                type: "post",
+                data: {name: name},
+                success: function () {
+                    alert("해당 확장자가 차단되었습니다.");
+                    location.reload();
+                },
+                error: function () {
+                    alert("이미 차단된 확장자입니다.");
+                }
+            });
+        });
+
+        $(".remove-extension-link").click(function (e) {
+            e.preventDefault();
+            var extensionId = $(this).data("extension-id");
+            $.ajax({
+                url: "/custom-extensions/" + extensionId + "/remove",
+                type: "post",
+                success: function () {
+                    alert("확장자 차단이 해제되었습니다.");
+                    location.reload();
+                },
+                error: function () {
+                    alert("해제 실패");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

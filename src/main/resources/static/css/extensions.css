@@ -1,0 +1,93 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.custom-extensions {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    width: 450px;
+}
+
+li {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+li.custom-extension {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 1px 5px;
+    margin: 2px;
+}
+
+.fixed-extension-checkbox {
+    margin-right: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#add-extension-form {
+    display: flex;
+}
+
+#add-extension-form input[type="text"] {
+    padding: 5px;
+    margin-right: 5px;
+}
+
+#add-extension-form button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#add-extension-form button:hover {
+    background-color: #2980b9;
+}
+
+.remove-extension-link {
+    margin-left: 10px;
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+.remove-extension-link:hover {
+    text-decoration: underline;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
+}
