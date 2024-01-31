@@ -20,7 +20,7 @@
 <h2>커스텀 확장자</h2>
 <form id="add-extension-form" method="post" th:action="@{/custom-extensions}">
     <input type="text" name="name" placeholder="확장자 입력">
-    <button type="submit">추가</button>
+    <button type="submit">추가</button>경
 </form>
 <ul class="custom-extensions">
     <li class="custom-extension" th:each="extension : ${customExtensions}">
@@ -36,6 +36,7 @@
         $(".fixed-extension-checkbox").change(function () {
             var isChecked = $(this).is(":checked");
             var extensionName = $(this).parent().find("span").text();
+            var checkbox = $(this);
             if (isChecked) {
                 $.ajax({
                     url: "/check-extension/" + extensionName,
@@ -55,10 +56,10 @@
                                     }
                                 });
                             } else {
-                                $(this).prop("checked", false);
+                                checkbox.prop("checked", false);
                             }
                         } else {
-                            var extensionId = $(this).data("extension-id");
+                            var extensionId = checkbox.data("extension-id");
                             $.ajax({
                                 url: "/fixed-extensions/" + extensionId + "/block-unblock",
                                 type: "post",
@@ -71,7 +72,7 @@
                     }
                 });
             } else {
-                var extensionId = $(this).data("extension-id");
+                var extensionId = checkbox.data("extension-id");
                 $.ajax({
                     url: "/fixed-extensions/" + extensionId + "/block-unblock",
                     type: "post",
