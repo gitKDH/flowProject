@@ -42,4 +42,25 @@ public class FileUploadService {
     public void deleteFile(String fileName) {
         uploadedFileRepository.deleteByFileName(fileName);
     }
+
+    public void deleteFilesWithExtension(String extension) {
+        List<UploadedFile> files = uploadedFileRepository.findAll();
+        for (UploadedFile file : files) {
+            String fileExtension = FilenameUtils.getExtension(file.getFileName());
+            if (fileExtension.equals(extension)) {
+                uploadedFileRepository.delete(file);
+            }
+        }
+    }
+
+    public boolean hasUploadedFileWithExtension(String extension) {
+        List<UploadedFile> files = uploadedFileRepository.findAll();
+        for (UploadedFile file : files) {
+            String fileExtension = FilenameUtils.getExtension(file.getFileName());
+            if (fileExtension.equals(extension)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

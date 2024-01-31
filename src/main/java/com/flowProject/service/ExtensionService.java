@@ -73,6 +73,24 @@ public class ExtensionService {
         return customExtension.isPresent();
     }
 
+    public void blockExtension(String extension) {
+        Optional<FixedExtension> fixedExtension = fixedExtensionRepository.findByName(extension);
+        if (fixedExtension.isPresent()) {
+            fixedExtension.get().setIsBlocked(true);
+            fixedExtensionRepository.save(fixedExtension.get());
+        } else {
+            Optional<CustomExtension> customExtension = customExtensionRepository.findByName(extension);
+            if (customExtension.isPresent()) {
+                // 이미 커스텀 확장자로 존재하므로, 별도의 처리는 필요 없음
+            } else {
+                // 새로운 커스텀 확장자로 추가
+                CustomExtension newExtension = new CustomExtension();
+                newExtension.setName(extension);
+                customExtensionRepository.save(newExtension);
+            }
+        }
+    }
+
 
 }
 
