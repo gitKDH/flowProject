@@ -12,8 +12,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class FileUploadController {
 
-    @Autowired
-    private FileUploadService fileUploadService;
+    private final FileUploadService fileUploadService;
+
+    public FileUploadController(FileUploadService fileUploadService){
+        this.fileUploadService = fileUploadService;
+    }
 
     @GetMapping("/")
     public String index(Model model) {

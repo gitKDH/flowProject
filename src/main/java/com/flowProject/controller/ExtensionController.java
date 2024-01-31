@@ -15,8 +15,12 @@ import java.util.Map;
 @Controller
 public class ExtensionController {
 
-    @Autowired
-    private ExtensionService extensionService;
+
+    private final ExtensionService extensionService;
+
+    public ExtensionController(ExtensionService extensionService){
+        this.extensionService = extensionService;
+    }
 
     @PostMapping("/fixed-extensions/{id}/block")
     public String blockFixedExtension(@PathVariable Long id) {
