@@ -20,7 +20,7 @@
 <h2>커스텀 확장자</h2>
 <form id="add-extension-form" method="post" th:action="@{/custom-extensions}">
     <input type="text" name="name" placeholder="확장자 입력">
-    <button type="submit">추가</button>경
+    <button type="submit">추가</button>
 </form>
 <ul class="custom-extensions">
     <li class="custom-extension" th:each="extension : ${customExtensions}">
