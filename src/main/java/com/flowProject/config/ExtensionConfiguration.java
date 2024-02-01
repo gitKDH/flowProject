@@ -20,7 +20,7 @@ public class ExtensionConfiguration {
 
             for (String extension : fixedExtensions) {
                 Optional<FixedExtension> existingExtension = fixedExtensionRepository.findByName(extension);
-                if (!existingExtension.isPresent()) {
+                if (existingExtension.isEmpty()) {
                     FixedExtension newExtension = new FixedExtension();
                     newExtension.setName(extension);
                     newExtension.setIsBlocked(false);
